@@ -24,13 +24,14 @@ jobs:
 
       - name: Run tests with coverage
         run: npm run test:coverage
-               - name: Generate and Report Coverage
-               uses: ArtiomTr/jest-coverage-report-action@v2
-               if: github.event_name == 'pull_request'
-               with:
-                 github-token: ${{ secrets.GITHUB_TOKEN }}
-                 package-manager: npm
-                 test-script: npm run test:coverage
-                 coverage-file: ./coverage/coverage-final.json
-                 annotations: all
-                 test-script-flags: "--ci"
+
+      - name: Generate and Report Coverage
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          package-manager: npm
+          test-script: npm run test:coverage
+          coverage-file: ./coverage/coverage-final.json
+          annotations: all
+          test-script-flags: "--ci"
